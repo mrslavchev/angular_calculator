@@ -1,4 +1,4 @@
-dist: trusty
+dist: xenial
 sudo: required
 addons:
   apt:
@@ -8,7 +8,6 @@ addons:
       - google-chrome-stable
 language: node_js
 node_js:
-  - "6"
   - "7"
 env:
   global:
