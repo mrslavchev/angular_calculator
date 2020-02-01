@@ -1,4 +1,6 @@
 dist: xenial
+services:
+  - xvfb
 sudo: required
 addons:
   chrome: stable
@@ -10,8 +12,6 @@ env:
     - DBUS_SESSION_BUS_ADDRESS=/dev/null
     - DISPLAY=:99.0
     - CHROME_BIN=chromium-browser
-before_script:
-  - sh -e /etc/init.d/xvfb start
 install:
   - npm install
 script:
