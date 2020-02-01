@@ -1,28 +1,28 @@
 <div id="calculator">
   <div class="display">
-    <div class="main">{{ display }}</div>
-    <div class="sub">{{ subDisplay }}</div>
+    <div class="main" id="main">{{ display }}</div>
+    <div class="sub" id="sub">{{ subDisplay }}</div>
   </div>
   <div class="clearfix controlPanel">
     <div class="numbers f_l">
       <div>
-        <span (click)="buildNumber('7')">7</span>
-        <span (click)="buildNumber('8')">8</span>
-        <span (click)="buildNumber('9')">9</span>
+        <span (click)="buildNumber('7')" id="7">7</span>
+        <span (click)="buildNumber('8')" id="8">8</span>
+        <span (click)="buildNumber('9')" id="9">9</span>
       </div>
       <div>
-        <span (click)="buildNumber('4')">4</span>
-        <span (click)="buildNumber('5')">5</span>
-        <span (click)="buildNumber('6')">6</span>
+        <span (click)="buildNumber('4')" id="4">4</span>
+        <span (click)="buildNumber('5')" id="5">5</span>
+        <span (click)="buildNumber('6')" id="6">6</span>
       </div>
       <div>
-        <span (click)="buildNumber('1')">1</span>
-        <span (click)="buildNumber('2')">2</span>
-        <span (click)="buildNumber('3')">3</span>
+        <span (click)="buildNumber('1')" id="1">1</span>
+        <span (click)="buildNumber('2')" id="2">2</span>
+        <span (click)="buildNumber('3')" id="3">3</span>
       </div>
       <div>
-        <span (click)="buildNumber('0')">0</span>
-        <span (click)="buildNumber('.')">.</span>
+        <span (click)="buildNumber('0')" id="0">0</span>
+        <span (click)="buildNumber('.')" id="dot">.</span>
       </div>
     </div>
     <div class="operation f_l">
