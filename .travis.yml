@@ -1,10 +1,15 @@
 dist: trusty
 sudo: required
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 language: node_js
 node_js:
-  - "5"
-os:
-  - linux
+  - "6"
+  - "7"
 env:
   global:
     - DBUS_SESSION_BUS_ADDRESS=/dev/null
@@ -15,6 +20,4 @@ before_script:
 install:
   - npm install
 script:
-  - npm run lint
-  - npm run test:once
-  - npm run e2e
+  - npm run ci
