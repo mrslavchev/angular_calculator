@@ -5,6 +5,7 @@ describe('QuickStart E2E Tests', function () {
   let expectedMsg = 'Hello Angular';
 
   beforeEach(function () {
+    browser.waitForAngularEnabled(false);
     browser.get('');
   });
 
