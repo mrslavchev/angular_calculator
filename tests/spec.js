@@ -1,3 +1,4 @@
+// import {by, element} from "protractor";
 
 var angularCalculator = require('./page-objects/angular-calculator');
 using = require('jasmine-data-provider');
@@ -55,5 +56,4 @@ describe('Calculator', function() {
       toEqual(data.sub)
     });
   });
-
 });

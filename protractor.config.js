@@ -10,9 +10,6 @@
 //
 //   To do all steps, try:  `npm run e2e`
 
-var fs = require('fs');
-var path = require('canonical-path');
-var _ = require('lodash');
 
 
 exports.config = {
@@ -20,7 +17,10 @@ exports.config = {
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    chromeOptions: {
+      args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
+    }
   },
 
   // Framework to use. Jasmine is recommended.
@@ -34,20 +34,40 @@ exports.config = {
   useAllAngular2AppRoots: true,
 
   // Base URL for application server
-  baseUrl: 'http://localhost:8080',
+  baseUrl: 'http://localhost:3000',
 
   // doesn't seem to work.
   // resultJsonOutputFile: "foo.json",
 
   onPrepare: function() {
-    //// SpecReporter
-    //var SpecReporter = require('jasmine-spec-reporter');
-    //jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'none'}));
-    //// jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
-
-    // debugging
-    // console.log('browser.params:' + JSON.stringify(browser.params));
-    jasmine.getEnv().addReporter(new Reporter( browser.params )) ;
+  //   // SpecReporter
+    var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+    jasmine.getEnv().addReporter(new SpecReporter({
+      suite: {
+        displayNumber: true,    // display each suite number (hierarchical)
+      },
+      spec: {
+        displayPending: true,   // display each pending spec
+        displayDuration: true,  // display each spec duration
+      },
+      summary: {
+        displaySuccesses: false, // display summary of all successes after execution
+        displayFailed: true,    // display summary of all failures after execution
+        displayPending: false,   // display summary of all pending specs after execution
+      },
+    }));
+  //   // jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
+  //
+  //   // debugging
+  //   // console.log('browser.params:' + JSON.stringify(browser.params));
+  //   // jasmine.getEnv().addReporter(new Reporter( browser.params )) ;
+  //
+  //   Allow changing bootstrap mode to NG1 for upgrade tests
+    global.setProtractorToNg1Mode = function() {
+      browser.useAllAngular2AppRoots = false;
+      browser.rootEl = 'body';
+    };
+  // },
 
     // Allow changing bootstrap mode to NG1 for upgrade tests
     global.setProtractorToNg1Mode = function() {
